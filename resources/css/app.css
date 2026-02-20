@@ -1,3 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --bg: #f3eef9;
+        --bg-soft: #ebe4f7;
+        --ink: #111827;
+        --muted: #667085;
+        --line: #ddd3ef;
+        --card: #ffffff;
+        --mint: #bbf7d0;
+        --peach: #fed7aa;
+        --lilac: #ddd6fe;
+        --sky: #bae6fd;
+        --rose: #fecdd3;
+    }
+
+    body {
+        font-family: 'Space Grotesk', sans-serif;
+        color: var(--ink);
+        background:
+            radial-gradient(520px 280px at 10% 0%, rgba(186, 230, 253, 0.45), transparent 70%),
+            radial-gradient(480px 260px at 95% 15%, rgba(254, 205, 211, 0.45), transparent 72%),
+            linear-gradient(180deg, #f5f0fb, var(--bg));
+        min-height: 100vh;
+    }
+}
+
+@layer components {
+    .shell {
+        @apply mx-auto max-w-7xl px-4 md:px-6;
+    }
+
+    .card {
+        @apply rounded-3xl border bg-white;
+        border-color: var(--line);
+        box-shadow: 0 14px 36px rgba(16, 24, 40, 0.07);
+    }
+
+    .section-title {
+        @apply text-2xl font-bold md:text-3xl;
+        letter-spacing: -0.02em;
+    }
+
+    .muted {
+        color: var(--muted);
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition;
+        color: #111827;
+        background: linear-gradient(90deg, #bbf7d0, #bae6fd 45%, #ddd6fe);
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.02);
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition;
+        border-color: #d7cbea;
+        background: #ffffff;
+        color: #1f2937;
+    }
+
+    .btn-ghost:hover {
+        border-color: #c4b5fd;
+        background: #faf7ff;
+    }
+
+    .store-input {
+        @apply w-full rounded-2xl border bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400;
+        border-color: #dacff0;
+    }
+
+    .store-input:focus {
+        @apply outline-none ring-2 ring-indigo-200;
+        border-color: #a78bfa;
+    }
+
+    .product-card {
+        @apply card overflow-hidden transition;
+    }
+
+    .product-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(99, 102, 241, 0.14);
+    }
+
+    .pill {
+        @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium;
+        border-color: #d5c8ed;
+        background: #fff;
+        color: #475467;
+    }
+
+    .accent-mint { background: var(--mint); }
+    .accent-peach { background: var(--peach); }
+    .accent-lilac { background: var(--lilac); }
+    .accent-sky { background: var(--sky); }
+    .accent-rose { background: var(--rose); }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use Illuminate\Contracts\View\View;
 
@@ -11,6 +12,7 @@ class AccountController extends Controller
     {
         $orders = auth()->user()
             ->orders()
+            ->where('status', OrderStatus::PAID->value)
             ->with(['items.product.previews', 'items.product.files', 'downloadEvents'])
             ->latest()
             ->paginate(10);
@@ -21,6 +23,10 @@ class AccountController extends Controller
     public function order(Order $order): View
     {
         $this->authorize('view', $order);
+
+        if (! auth()->user()->isAdmin() && ! $order->isPaid()) {
+            abort(404);
+        }
 
         $order->load(['items.product.files', 'downloadEvents']);
 
